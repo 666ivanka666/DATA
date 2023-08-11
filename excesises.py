@@ -179,9 +179,9 @@ while True:
                 print("Nema podataka o glavnom gradu.")
             
             try:
-                common_name = country['name']['common']
-                print("Zajedničko ime:", common_name)
+                common_name = country['translations']['zho']['common']
+                print("zho ime:", common_name)
             except KeyError:
-                print("Nema podataka o zajedničkom imenu.")
+                print("Nema podataka o zho imenu.")
             
             print("---------------------")

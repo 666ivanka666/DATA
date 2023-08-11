@@ -75,11 +75,7 @@ def get_nationality_data(name):
 while True:
     user_input = input("Enter a name (or press ENTER/ESC to exit): ")
     
-    if not user_input:
-        print("Thank you for using the program.")
-        break
-    
-    if user_input.lower() == "esc":
+    if not user_input or user_input.lower() == "esc":
         print("Thank you for using the program.")
         break
     
@@ -259,11 +255,7 @@ def get_show_data(query):
 while True:
     user_input = input("Enter a TV show name (or press ENTER/ESC to exit): ")
     
-    if not user_input:
-        print("Thank you for using the program.")
-        break
-    
-    if user_input.lower() == "esc":
+    if not user_input or user_input.lower() == "esc":
         print("Thank you for using the program.")
         break
     
@@ -275,9 +267,7 @@ while True:
                 show_name = entry['show']['name']
                 show_rating = entry['show']['rating']['average']
                 print(f"Show: {show_name}, Rating: {show_rating}")
-            except KeyError:
-                print("Invalid show data")
-            except TypeError:
+            except (KeyError, TypeError):
                 print("Invalid show data")
     else:
         print("No show data available for the specified query.")
@@ -287,62 +277,6 @@ while True:
 # Write a program that reads your favorite TV show names from text file shows.txt and outputs them sorted by show ratings, descending.
 # Use TvMaze API endpoint: https://api.tvmaze.com/search/shows?q={show}
 # If multiple shows have been retrieved from the endpoint, use only the first one.
-
-
-
-# import os
-# import requests
-
-# # Function to fetch show data from TVMaze API
-# def get_show_data(show_name):
-#     url = f"https://api.tvmaze.com/search/shows?q={show_name}"
-#     response = requests.get(url, verify=False)
-#     data = response.json()
-#     if data:
-#         return data[0]['show']
-#     return None
-
-# # Read show names from shows.txt
-# def read_show_names(filename):
-#     with open(filename, 'r') as file:
-#         return [line.strip() for line in file]
-
-# # Open shows.txt for viewing
-# def open_show_names(filename):
-#     with open(filename, 'r') as file:
-#         content = file.read()
-#         print(content)
-
-# # Main function
-# def main():
-#     script_dir = os.path.dirname(os.path.abspath(__file__))
-#     shows_file_path = os.path.join(script_dir, 'shows.txt')
-
-#     # Open and display shows.txt
-#     open_show_names(shows_file_path)
-
-#     # Read show names from shows.txt
-#     show_names = read_show_names(shows_file_path)
-#     shows_with_ratings = []
-
-#     for show_name in show_names:
-#         show_data = get_show_data(show_name)
-#         if show_data:
-#             show_name = show_data['name']
-#             show_rating = show_data['rating']['average'] if (show_data.get('rating') and show_data['rating'].get('average')) else 0
-#             shows_with_ratings.append((show_name, show_rating))
-
-#     # Sort shows by rating in descending order
-#     shows_with_ratings.sort(key=lambda x: x[1], reverse=True)
-
-#     # Print sorted shows with ratings
-#     for show, rating in shows_with_ratings:
-#         print(f"{show}: {rating}")
-
-# if __name__ == "__main__":
-#     main()
-
-
 
 import os
 import requests
